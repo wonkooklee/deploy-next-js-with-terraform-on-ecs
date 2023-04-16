@@ -1,12 +1,13 @@
 {
   "name": "docker-nextjs-ecs",
-  "version": "0.1.0",
+  "version": "1.0.18",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "push:image": "scripts/push-image-to-ecr.sh $1"
   },
   "dependencies": {
     "@types/node": "18.15.11",
