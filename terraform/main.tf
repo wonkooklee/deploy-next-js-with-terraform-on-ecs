@@ -230,17 +230,17 @@ variable "ecs_module_parameters" {
   }))
   default = {
     "dev-1" = {
-      image_tag         = "v1.0.18"
+      image_tag         = "latest"
       subdomain         = "dev-1"
       target_group_name = "dev-1-tg"
     }
     "dev-2" = {
-      image_tag         = "v1.0.18"
+      image_tag         = "latest"
       subdomain         = "dev-2"
       target_group_name = "dev-2-tg"
     }
     "dev-3" = {
-      image_tag         = "v1.0.18"
+      image_tag         = "latest"
       subdomain         = "dev-3"
       target_group_name = "dev-3-tg"
     }
