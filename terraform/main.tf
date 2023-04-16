@@ -1,8 +1,3 @@
-resource "aws_ecr_repository" "wonkook_ecr_repo" {
-  name                 = "wonkook-ecr-repo"
-  image_tag_mutability = "MUTABLE"
-}
-
 resource "aws_ecs_cluster" "wonkook_ecs_cluster" {
   name = "wonkook-ecs-cluster"
 }
@@ -172,7 +167,7 @@ resource "aws_lb_listener_certificate" "wonkook_lb_certificate" {
 #   container_definitions = jsonencode([
 #     {
 #       name      = "wonkook-task-def"
-#       image     = "${aws_ecr_repository.wonkook_ecr_repo.repository_url}:${var.image_tag}"
+#       image     = "${var.aws_ecr_repository_url}:${var.image_tag}"
 #       essential = true
 #       portMappings = [
 #         {
@@ -257,7 +252,7 @@ module "ecs_dev" {
   alias_alb_dns_name = aws_alb.application_load_balancer.dns_name
   alias_alb_zone_id  = data.aws_lb_hosted_zone_id.main.id
   execution_role_arn = aws_iam_role.ecsTaskExecutionRole.arn
-  repository_url     = aws_ecr_repository.wonkook_ecr_repo.repository_url
+  repository_url     = var.aws_ecr_repository_url
   security_groups    = [aws_security_group.service_sg.id]
   route53_zone_id    = var.my_route53_zone_id
 
@@ -279,7 +274,7 @@ module "ecs_staging" {
   alias_alb_dns_name = aws_alb.application_load_balancer.dns_name
   alias_alb_zone_id  = data.aws_lb_hosted_zone_id.main.id
   execution_role_arn = aws_iam_role.ecsTaskExecutionRole.arn
-  repository_url     = aws_ecr_repository.wonkook_ecr_repo.repository_url
+  repository_url     = var.aws_ecr_repository_url
   security_groups    = [aws_security_group.service_sg.id]
   route53_zone_id    = var.my_route53_zone_id
 
@@ -300,7 +295,7 @@ module "ecs_production" {
   alias_alb_dns_name = aws_alb.application_load_balancer.dns_name
   alias_alb_zone_id  = data.aws_lb_hosted_zone_id.main.id
   execution_role_arn = aws_iam_role.ecsTaskExecutionRole.arn
-  repository_url     = aws_ecr_repository.wonkook_ecr_repo.repository_url
+  repository_url     = var.aws_ecr_repository_url
   security_groups    = [aws_security_group.service_sg.id]
   route53_zone_id    = var.my_route53_zone_id
 

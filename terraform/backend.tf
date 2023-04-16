@@ -1,8 +1,9 @@
 terraform {
   backend "s3" {
-    bucket  = "s3-bucket-tfstate-2308ru2308fuwe"
-    key     = "terraform.tfstate"
-    region  = "ap-northeast-2"
-    encrypt = true
+    bucket         = "wonkook-backend-tfstate-bucket"
+    key            = "terraform.tfstate"
+    dynamodb_table = "terraform-lock"
+    region         = "ap-northeast-2"
+    encrypt        = true
   }
 }

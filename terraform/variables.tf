@@ -42,6 +42,10 @@ variable "depoly-to" {
   type = string
 }
 
+variable "aws_ecr_repository_url" {
+  type = string
+}
+
 # locals {
 #   security-groups = jsondecode(file("${path.module}/SecurityGroup.json"))["Domain"]["SecurityGroups"]
 # }
